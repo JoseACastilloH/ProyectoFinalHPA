@@ -9,6 +9,8 @@ import androidx.viewpager2.adapter.FragmentViewHolder;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.hardware.SensorManager;
@@ -26,6 +28,7 @@ public class MenuActivity extends AppCompatActivity {
     private Drawable drwAceBlanco, drwAceGris;
     private Drawable drwGiroBlanco, drwGiroGris;
     private Drawable drwProxBlanco, drwProxGris;
+    private boolean landscape;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,13 +61,26 @@ public class MenuActivity extends AppCompatActivity {
 
         btnGiroscopio.setOnClickListener(new View.OnClickListener() {
             @Override
+
             public void onClick(View view) {
 
                 btnAceletrometro.setForeground(drwAceGris);
                 btnGiroscopio.setForeground(drwGiroBlanco);
                 btnProximidad.setForeground(drwProxGris);
 
+                SensorManager sensor = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+                GyroscopeFragment proFrag = new GyroscopeFragment();
+                proFrag.setSensor(sensor);
+
+
+
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.fragView, proFrag);
+                ft.commit();
+
             }
+
         });
 
         btnProximidad.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +102,4 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }
