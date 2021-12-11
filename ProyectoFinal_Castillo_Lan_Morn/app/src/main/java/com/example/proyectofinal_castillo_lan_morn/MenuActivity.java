@@ -9,8 +9,6 @@ import androidx.viewpager2.adapter.FragmentViewHolder;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.hardware.SensorManager;
@@ -28,7 +26,7 @@ public class MenuActivity extends AppCompatActivity {
     private Drawable drwAceBlanco, drwAceGris;
     private Drawable drwGiroBlanco, drwGiroGris;
     private Drawable drwProxBlanco, drwProxGris;
-    private boolean landscape;
+    private Drawable drwCube;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +41,7 @@ public class MenuActivity extends AppCompatActivity {
         drwGiroGris = res.getDrawable(R.drawable.icono_giroscopio_gris, getTheme());
         drwProxBlanco = res.getDrawable(R.drawable.icono_proximidad_blanco, getTheme());
         drwProxGris = res.getDrawable(R.drawable.icono_proximidad_gris, getTheme());
+        drwCube = res.getDrawable(R.drawable.icono_cubo, getTheme());
 
         btnAceletrometro = findViewById(R.id.btnAcelerometro);
         btnGiroscopio = findViewById(R.id.btnGiroscopio);
@@ -55,32 +54,27 @@ public class MenuActivity extends AppCompatActivity {
                 btnAceletrometro.setForeground(drwAceBlanco);
                 btnGiroscopio.setForeground(drwGiroGris);
                 btnProximidad.setForeground(drwProxGris);
-
-            }
-        });
-
-        btnGiroscopio.setOnClickListener(new View.OnClickListener() {
-            @Override
-
-            public void onClick(View view) {
-
-                btnAceletrometro.setForeground(drwAceGris);
-                btnGiroscopio.setForeground(drwGiroBlanco);
-                btnProximidad.setForeground(drwProxGris);
-
                 SensorManager sensor = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
-                GyroscopeFragment proFrag = new GyroscopeFragment();
+                AccelerationFragment proFrag = new AccelerationFragment();
                 proFrag.setSensor(sensor);
-
-
 
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.fragView, proFrag);
                 ft.commit();
 
             }
+        });
 
+        btnGiroscopio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                btnAceletrometro.setForeground(drwAceGris);
+                btnGiroscopio.setForeground(drwGiroBlanco);
+                btnProximidad.setForeground(drwProxGris);
+
+            }
         });
 
         btnProximidad.setOnClickListener(new View.OnClickListener() {
@@ -93,8 +87,7 @@ public class MenuActivity extends AppCompatActivity {
 
                 SensorManager sensor = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
-                ProximityFragment proFrag = new ProximityFragment();
-                proFrag.setSensor(sensor);
+                ProximityFragment proFrag = new ProximityFragment(sensor, drwCube);
 
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.fragView, proFrag);
@@ -102,4 +95,6 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }
