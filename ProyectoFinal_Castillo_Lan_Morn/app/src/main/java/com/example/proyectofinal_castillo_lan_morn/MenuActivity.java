@@ -26,6 +26,7 @@ public class MenuActivity extends AppCompatActivity {
     private Drawable drwAceBlanco, drwAceGris;
     private Drawable drwGiroBlanco, drwGiroGris;
     private Drawable drwProxBlanco, drwProxGris;
+    private Drawable drwCube;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,7 @@ public class MenuActivity extends AppCompatActivity {
         drwGiroGris = res.getDrawable(R.drawable.icono_giroscopio_gris, getTheme());
         drwProxBlanco = res.getDrawable(R.drawable.icono_proximidad_blanco, getTheme());
         drwProxGris = res.getDrawable(R.drawable.icono_proximidad_gris, getTheme());
+        drwCube = res.getDrawable(R.drawable.icono_cubo, getTheme());
 
         btnAceletrometro = findViewById(R.id.btnAcelerometro);
         btnGiroscopio = findViewById(R.id.btnGiroscopio);
@@ -77,8 +79,7 @@ public class MenuActivity extends AppCompatActivity {
 
                 SensorManager sensor = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
-                ProximityFragment proFrag = new ProximityFragment();
-                proFrag.setSensor(sensor);
+                ProximityFragment proFrag = new ProximityFragment(sensor, drwCube);
 
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.fragView, proFrag);

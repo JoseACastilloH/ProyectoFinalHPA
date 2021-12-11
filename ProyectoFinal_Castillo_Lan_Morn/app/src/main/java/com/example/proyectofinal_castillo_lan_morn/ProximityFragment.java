@@ -1,59 +1,99 @@
 package com.example.proyectofinal_castillo_lan_morn;
 
-import androidx.lifecycle.ViewModelProvider;
-
-import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.annotation.ColorInt;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Random;
+
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link ProximityFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
 public class ProximityFragment extends Fragment {
 
-    private TextView ProximitySensor, data;
-    private SensorManager mySensorManager;
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
+    private ImageView imgCube;
+    private FrameLayout flView;
+    private SensorManager sensorManager;
     private Sensor myProximitySensor;
+    private Drawable drwCube;
+    private int colors[];
 
-    public static ProximityFragment newInstance() {
-        return new ProximityFragment();
+    public ProximityFragment(SensorManager sensor, Drawable cube) {
+        sensorManager = sensor;
+        drwCube = cube;
     }
 
-    public void setSensor(SensorManager sensor){
-        mySensorManager = sensor;
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment ProximityFragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static ProximityFragment newInstance(String param1, String param2, SensorManager sensor, Drawable cube) {
+        ProximityFragment fragment = new ProximityFragment(sensor, cube);
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.proximity_fragment, container, false);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_proximity, container, false);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ProximitySensor = (TextView) view.findViewById(R.id.proximitySensor);
-        data = (TextView) view.findViewById(R.id.data);
-        myProximitySensor = mySensorManager.getDefaultSensor(
-                Sensor.TYPE_PROXIMITY);
+
+        imgCube = view.findViewById(R.id.imgCube);
+        flView = view.findViewById(R.id.flView);
+
+        myProximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+
         if (myProximitySensor == null) {
-            ProximitySensor.setText("No Proximity Sensor!");
+            System.console().printf("This device has not proximity sensor");
         } else {
-            mySensorManager.registerListener(proximitySensorEventListener,
+            sensorManager.registerListener(proximitySensorEventListener,
                     myProximitySensor,
                     SensorManager.SENSOR_DELAY_NORMAL);
         }
@@ -70,12 +110,20 @@ public class ProximityFragment extends Fragment {
             // TODO Auto-generated method stub
             if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
                 if (event.values[0] == 0) {
-                    data.setText("Near");
+
+                    Random random = new Random();
+                    int r = random.nextInt(255);
+                    int g = random.nextInt(255);
+                    int b = random.nextInt(255);
+
+                    flView.setBackgroundColor(Color.argb(255, r, g, b));
+                    imgCube.setForeground(drwCube);
                 } else {
-                    data.setText("Away");
+
+                    flView.setBackgroundColor(Color.WHITE);
+                    imgCube.setForeground(null);
                 }
             }
         }
     };
-
 }
