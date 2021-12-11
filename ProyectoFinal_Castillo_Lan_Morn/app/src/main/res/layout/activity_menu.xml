@@ -9,25 +9,24 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="587"
+        android:layout_height="562dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <FrameLayout
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </FrameLayout>
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="100dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,28 +35,34 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/purple_500"
+            android:backgroundTint="@color/purple_500"
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/btn1"
+                android:id="@+id/btnAcelerometro"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:layout_height="match_parent"
+                android:layout_weight="15"
+                android:backgroundTint="@color/purple_500"
+                android:foreground="@drawable/icono_acelerometro_blanco" />
 
             <ImageButton
-                android:id="@+id/btn2"
+                android:id="@+id/btnGiroscopio"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:layout_height="match_parent"
+                android:layout_weight="15"
+                android:backgroundTint="@color/purple_500"
+                android:foreground="@drawable/icono_giroscopio_gris" />
 
             <ImageButton
-                android:id="@+id/btn3"
+                android:id="@+id/btnProximidad"
+                style="@android:style/Widget.ImageButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:layout_height="match_parent"
+                android:layout_weight="15"
+                android:backgroundTint="@color/purple_500"
+                android:foreground="@drawable/icono_proximidad_gris" />
 
         </LinearLayout>
 
