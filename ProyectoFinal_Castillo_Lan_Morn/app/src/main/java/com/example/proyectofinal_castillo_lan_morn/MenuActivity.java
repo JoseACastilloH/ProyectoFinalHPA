@@ -54,6 +54,14 @@ public class MenuActivity extends AppCompatActivity {
                 btnAceletrometro.setForeground(drwAceBlanco);
                 btnGiroscopio.setForeground(drwGiroGris);
                 btnProximidad.setForeground(drwProxGris);
+                SensorManager sensor = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+                AccelerationFragment proFrag = new AccelerationFragment();
+                proFrag.setSensor(sensor);
+
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.fragView, proFrag);
+                ft.commit();
 
             }
         });
