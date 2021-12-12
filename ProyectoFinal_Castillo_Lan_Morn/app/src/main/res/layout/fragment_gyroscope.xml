@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GyroscopeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity"
+        android:background="#FF9008"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tvtitulo"
+            android:layout_width="730dp"
+            android:layout_height="178dp"
+            android:fontFamily="sans-serif-black"
+            android:rotation="-90"
+            android:text="Sensor Giroscopio"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="35dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.821"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.499" />
+
+        <TextView
+            android:id="@+id/tvnota"
+            android:layout_width="544dp"
+            android:layout_height="214dp"
+            android:fontFamily="sans-serif-black"
+            android:rotation="-90"
+            android:text="Nota: Coloca tu celular de forma horizontal y muevelo a todas partes para observar como los valores van cambiando."
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.646"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.499" />
+
+        <TextView
+            android:id="@+id/tvX"
+            android:layout_width="123dp"
+            android:layout_height="70dp"
+            android:fontFamily="sans-serif-black"
+            android:rotation="-90"
+            android:text="X = "
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="35dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.499" />
+
+        <TextView
+            android:id="@+id/tvY"
+            android:layout_width="123dp"
+            android:layout_height="70dp"
+            android:fontFamily="sans-serif-black"
+            android:rotation="-90"
+            android:text="Y = "
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="35dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.756"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.499" />
+
+        <TextView
+            android:id="@+id/tvZ"
+            android:layout_width="123dp"
+            android:layout_height="70dp"
+            android:fontFamily="sans-serif-black"
+            android:rotation="-90"
+            android:text="Z = "
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="35dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</FrameLayout>
