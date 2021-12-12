@@ -74,6 +74,14 @@ public class MenuActivity extends AppCompatActivity {
                 btnGiroscopio.setForeground(drwGiroBlanco);
                 btnProximidad.setForeground(drwProxGris);
 
+                SensorManager sensor = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+                GyroscopeFragment proFrag = new GyroscopeFragment();
+                proFrag.setSensor(sensor);
+
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.fragView, proFrag);
+                ft.commit();
             }
         });
 
